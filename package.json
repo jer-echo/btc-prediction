@@ -1,0 +1,25 @@
+{
+  "name": "btc-prediction",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "brain.js": "^2.0.0-beta.15",
+    "gpu.js": "^2.15.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jer-echo/btc-prediction.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jer-echo/btc-prediction/issues"
+  },
+  "homepage": "https://github.com/jer-echo/btc-prediction#readme"
+}
