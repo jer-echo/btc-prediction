@@ -3,6 +3,6 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
-  - init: npm install
+  - init: export NODE_OPTIONS=--max_old_space_size=32000 && sudo apt-get install -y build-essential libxi-dev libglu1-mesa-dev libglew-dev pkg-config && npm install
 
 
