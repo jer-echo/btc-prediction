@@ -92,12 +92,17 @@ async function getJson(path){
 }
 
 async function init(){
+    var netState = await getJson('net.json')
+    const net = new brain.recurrent.LSTMTimeStep();
+    net.fromJSON(netState);
 
     // compress data
     const COMPRESS = 60
 
     // chart X axis/label 
     const CHARTLEN = 100
+
+    const TIMEOUT = 300
 
     var data = ave((await getJson('close.json')), COMPRESS)
 
@@ -144,6 +149,8 @@ async function init(){
     setInterval(() => {
         if(data.length > 0 && data[0]) {
             var actualDataset = myChart.data.datasets[0].data
+            var la_ave = Array.from(actualDataset)
+            console.log(la_ave)
             var predictionDataset = myChart.data.datasets[1].data
 
             if(actualDataset.length >= myChart.data.labels.length) {
@@ -153,14 +160,15 @@ async function init(){
             if(predictionDataset.length >= myChart.data.labels.length) {
                 myChart.data.datasets[1].data = predictionDataset.splice(1)
             }
-            
-            const a_ave = data.splice(0, 1)[0]
-            const p_ave = data.splice(0, 1)[0] - 200
+
+            p_ave = net.forecast(la_ave, 1)
+            console.log(p_ave)
+            var a_ave = data.splice(0, 1)[0]
             live_cases.add(a_ave)
             actualDataset.push(a_ave)
-            predictionDataset.push(p_ave)
+            // predictionDataset.push(p_ave)
             myChart.update()
             live_cases.map((x,y,c) => document.querySelector(`#live-${x}`).innerText = `${y} instances of ${c}`)
         }
-    }, 0)
+    }, TIMEOUT)
 }
