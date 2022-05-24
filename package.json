@@ -7,9 +7,11 @@
     "brain.js": "^2.0.0-beta.15",
     "gpu.js": "^2.15.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sass": "^1.52.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev" : "npx sass -w ./:./ --no-source-map"
   },
   "repository": {
     "type": "git",

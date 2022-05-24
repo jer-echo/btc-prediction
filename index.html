@@ -5,9 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="//unpkg.com/brain.js"></script>
+    <div style="width: 100%;">
+        <canvas style="width: 100%;max-width: 100%;height:300px;max-height: 300px;" id="chart"></canvas>
+    </div>
+    <div class="wrapper">
+        <div class="container">
+            <div class="title">Expected Result</div>
+            <script>
+                for(var i = 1; i <= 8;i++) document.write(`<div class="cases" id="total-${i}"></div>`)
+            </script>
+        </div>
+        <div class="container">
+            <div class="title">Live Simulation</div>
+            <script>
+                for(var i = 1; i <= 8;i++) document.write(`<div class="cases" id="live-${i}"></div>`)
+            </script>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

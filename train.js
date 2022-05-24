@@ -36,7 +36,7 @@ function chucks(data, chuckSize, startPage,iterate = null) {
 }
 const start_page = JSON.parse(read(PAGE_FILE, '{"page":1}')).page
 
-chucks(data, 5, start_page, function(chuck,page,total){
+chucks(data, 60, start_page, function(chuck,page,total){
     console.log(`status: ${page} of ${total}`)
     const net = new brain.recurrent.LSTMTimeStep();
     const json = JSON.parse(read(NET_FILE, null))
