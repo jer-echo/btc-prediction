@@ -1,5 +1,13 @@
 document.addEventListener('DOMContentLoaded', init)
 
+// compress data
+const COMPRESS = 60 * 24
+
+// chart X axis/label 
+const CHARTLEN = 1000
+
+const TIMEOUT = 0
+
 class Cases {
     last = null
     cases = {
@@ -92,17 +100,9 @@ async function getJson(path){
 }
 
 async function init(){
-    var netState = await getJson('net.json')
-    const net = new brain.recurrent.LSTMTimeStep();
-    net.fromJSON(netState);
-
-    // compress data
-    const COMPRESS = 60
-
-    // chart X axis/label 
-    const CHARTLEN = 100
-
-    const TIMEOUT = 300
+    // var netState = await getJson('net.json')
+    // const net = new brain.recurrent.LSTMTimeStep();
+    // net.fromJSON(netState);
 
     var data = ave((await getJson('close.json')), COMPRESS)
 
@@ -150,7 +150,7 @@ async function init(){
         if(data.length > 0 && data[0]) {
             var actualDataset = myChart.data.datasets[0].data
             var la_ave = Array.from(actualDataset)
-            console.log(la_ave)
+            // console.log(la_ave)
             var predictionDataset = myChart.data.datasets[1].data
 
             if(actualDataset.length >= myChart.data.labels.length) {
@@ -161,8 +161,8 @@ async function init(){
                 myChart.data.datasets[1].data = predictionDataset.splice(1)
             }
 
-            p_ave = net.forecast(la_ave, 1)
-            console.log(p_ave)
+            // p_ave = net.forecast(la_ave, 1)
+            // console.log(p_ave)
             var a_ave = data.splice(0, 1)[0]
             live_cases.add(a_ave)
             actualDataset.push(a_ave)
